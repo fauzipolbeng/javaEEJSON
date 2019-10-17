@@ -1,0 +1,194 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+<h:head title="PrimeFaces Extensions - Layout created by pane options"
+	shortcutIcon="#{request.contextPath}/favicon.ico">
+
+	<style type="text/css">
+.ui-layout-unit {
+	border: none;
+}
+
+.ui-layout-pane {
+	border: none;
+}
+
+.ui-layout {
+	border: none;
+}
+</style>
+
+</h:head>
+<h:body>
+
+	<h:form id="mainForm">
+		<pe:layout id="fullPage" options="#{fullLayout.layoutOptions}"
+			stateCookie="true" widgetVar="fpLayoutWidget">
+
+			<pe:layoutPane position="north">
+
+				<!-- <h:panelGrid columns="7" style="margin-left:10px;margin-right:8px;width:99.99%;">  - - >
+            <h:panelGrid style="margin-left:10px;margin-right:10px;width:99.99%;">  
+              <! - - <p:commandButton style="float="right"/>   error typo
+                    <p:commandButton style="float:right;"/>
+              -->
+				<p:panelGrid style="margin-left:8px;margin-right:8px;width:99.99%;"
+					styleClass="ui-noborder" border="0">
+
+
+					<p:toolbar>
+						<f:facet name="left">
+							<p:commandButton value="Toggle West-Center" type="button"
+								icon="ui-icon-document"
+								onclick="PF('fpLayoutWidget').toggle('west_center')" />
+						</f:facet>
+
+						<f:facet name="right">
+							<p:commandButton value="Close Center-Center" type="button"
+								icon="ui-icon-document"
+								onclick="PF('fpLayoutWidget').close('center_center')" />
+
+							<p:commandButton value="Open Center-Center" type="button"
+								icon="ui-icon-document"
+								onclick="PF('fpLayoutWidget').open('center_center')" />
+
+							<p:commandButton value="Size East Pane" type="button"
+								icon="ui-icon-document"
+								onclick="PF('fpLayoutWidget').sizePane('east', 250)" />
+
+							<p:commandButton value="Size West-South Pane" type="button"
+								icon="ui-icon-document"
+								onclick="PF('fpLayoutWidget').sizePane('west_south', 80)" />
+							<!--  - - >
+								<p:themeSwitcher id="basic" style="width:165px">
+									<f:selectItem itemLabel="Choose Theme" itemValue="" />
+									<f:selectItems value="#{themeSwitcherView.themes}" var="theme"
+										itemLabel="#{theme.displayName}" itemValue="#{theme.name}" />
+								</p:themeSwitcher>  -->
+
+						</f:facet>
+
+					</p:toolbar>
+				</p:panelGrid>
+
+			</pe:layoutPane>
+
+
+			<pe:layoutPane position="center">
+
+				<pe:layoutPane position="center">
+
+					<f:facet name="header">
+						<h:outputText value="Center-Center" />
+					</f:facet>
+
+					<p:growl id="growl" life="2000" />
+
+					<p:outputPanel id="myPanel">
+						<ui:include src="/sections/includes/#{menuContentBean.page}.xhtml" />
+					</p:outputPanel>
+
+					<p:messages id="msg" showDetail="true" showSummary="true">
+						<p:effect type="pulsate" event="load" delay="0">
+							<f:param name="mode" value="'show'" />
+							<f:param name="times" value="'1'" />
+						</p:effect>
+					</p:messages>
+
+				</pe:layoutPane>
+
+			</pe:layoutPane>
+
+			<pe:layoutPane position="west">
+
+				<pe:layoutPane position="center">
+
+					<f:facet name="header">
+						<h:outputText value="West-Center" />
+					</f:facet>
+
+					<ul>
+						<li><p:commandLink id="ajax" update="myPanel"
+								actionListener="#{menuContentBean.setPage('include1')}">
+								<h:outputText value="Paged Table " />
+							</p:commandLink></li>
+
+						<li><p:commandLink id="nonAjax" ajax="true" update="myPanel"
+								actionListener="#{menuContentBean.setPage('include2')}">
+								<h:outputText value="Continue Table" />
+							</p:commandLink></li>
+
+						<li><p:commandLink update="myPanel" value="TEST"
+								actionListener="#{menuContentBean.setPage('testView')}" /></li>
+						<li><p:commandLink update="myPanel" value="ADMIN"
+								actionListener="#{menuContentBean.setPage('adminView')}" /></li>
+						<li><p:commandLink update="myPanel" value="CONTACT US"
+								actionListener="#{menuContentBean.setPage('contactusView')}" /></li>
+						<li><p:commandLink update="myPanel" value="COURSE"
+								actionListener="#{menuContentBean.setPage('courseView')}" /></li>
+						<li><p:commandLink update="myPanel" value="EVENT"
+								actionListener="#{menuContentBean.setPage('eventView')}" /></li>
+						<li><p:commandLink update="myPanel" value="EXAM"
+								actionListener="#{menuContentBean.setPage('examView')}" /></li>
+						<li><p:commandLink update="myPanel" value="FEEDBACK"
+								actionListener="#{menuContentBean.setPage('updateView1')}" /></li>
+						<li><p:commandLink update="myPanel" value="NEWS"
+								actionListener="#{menuContentBean.setPage('newsView')}" /></li>
+						<li><p:commandLink update="myPanel" value="SEMESTER"
+								actionListener="#{menuContentBean.setPage('semesterView')}" /></li>
+						<li><p:commandLink update="myPanel" value="STUDENT"
+								actionListener="#{menuContentBean.setPage('studentView')}" /></li>
+						<li><p:commandLink update="myPanel" value="SUBJECT"
+								actionListener="#{menuContentBean.setPage('subjectView')}" /></li>
+                        <li><p:commandLink update="myPanel" value="SEMBAKO" actionListener="#{menuContentBean.setPage('sembakoView')}" /></li>
+
+					</ul>
+
+
+				</pe:layoutPane>
+
+				<pe:layoutPane position="south">
+                West-South
+                		
+		       
+
+				</pe:layoutPane>
+
+			</pe:layoutPane>
+
+			<pe:layoutPane position="east">
+            East
+        </pe:layoutPane>
+
+			<pe:layoutPane position="south">
+				<center>South</center>
+
+			</pe:layoutPane>
+
+		</pe:layout>
+	</h:form>
+
+	<h:outputStylesheet library="css" name="global.css" />
+
+	<h:outputStylesheet id="layoutCSS">
+    body {
+        margin: 4px !important;
+    }
+</h:outputStylesheet>
+
+
+
+	<!-- EXAMPLE-SOURCE-END -->
+
+
+
+</h:body>
+
+
+</html>
